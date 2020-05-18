@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">日历</router-link> |
+      <router-link to="/time">时钟</router-link>
     </div>
     <router-view/>
   </div>
@@ -23,6 +23,7 @@
   a {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
 
     &.router-link-exact-active {
       color: #42b983;
