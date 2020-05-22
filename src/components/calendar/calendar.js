@@ -4,7 +4,7 @@ let month = new Date().getMonth() + 1;
 let date = new Date().getDate();
 
 // 根据年、月，获取一个月的天数
-const getDaysByMonth = (year, month) => {
+const getDaysByMonth = (year, month, color = "#000") => {
   let days = [];
   if([1,3,5,7,8,10,12].includes(month)){    // 有31天的月份
     days = [...(new Array(31)).keys()].map(v => v + 1);
@@ -19,7 +19,8 @@ const getDaysByMonth = (year, month) => {
     return v = {
       year: year,
       month: month,
-      day: v
+      day: v,
+      color: color
     }
   })
 }
@@ -48,11 +49,11 @@ const getMonthDays = (year, month, date, lastMonthYear, lastMonth, nextMonthYear
   let curDays = getToday(year, month, date);
   let n = 7 - curDays.length % 7;
   let w = getWeekday(year, month); // 会得到一个数字表示星期几
-  let L = getDaysByMonth(lastMonthYear, lastMonth);
-  let N = getDaysByMonth(nextMonthYear, nextMonth);
+  let L = getDaysByMonth(lastMonthYear, lastMonth, "#999");
+  let N = getDaysByMonth(nextMonthYear, nextMonth, "#999");
   switch (w) {
-    case 7: // 说明当月1号是周日
-      curDays = [...curDays,...N.slice(0,n)]
+    case 0: // 说明当月1号是周日
+      curDays = [...L.slice(-7),...curDays,...N.slice(0,n)]
       break;
     case 1: // 说明当月1号是周一
       curDays = [...L.slice(-1),...curDays,...N.slice(0,n)]
@@ -63,13 +64,13 @@ const getMonthDays = (year, month, date, lastMonthYear, lastMonth, nextMonthYear
     case 3: // 说明当月1号是周三
       curDays = [...L.slice(-3),...curDays,...N.slice(0,n)]
       break;
-    case 4: // 说明当月1号是周一
+    case 4: // 说明当月1号是周四
       curDays = [...L.slice(-4),...curDays,...N.slice(0,n)]
       break;
-    case 5: // 说明当月1号是周二
+    case 5: // 说明当月1号是周五
       curDays = [...L.slice(-5),...curDays,...N.slice(0,n)]
       break;
-    case 6: // 说明当月1号是周三
+    case 6: // 说明当月1号是周六
       curDays = [...L.slice(-6),...curDays,...N.slice(0,n)]
       break;
     default:

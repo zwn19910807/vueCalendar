@@ -27,19 +27,14 @@ export default {
       month: month,
       date: date,
       weekArray: ['日','一','二','三','四','五','六'],
-      lastMonth: '',
-      nextMonth: '',
-      lastMonthYear: '',
-      nextMonthYear: '',
+      lastMonth: this.month--,
+      nextMonth: this.month++,
+      lastMonthYear: this.year--,
+      nextMonthYear: this.year++,
     }
   },
   computed: {
-    // lsatMonthDays(){
-    //   return getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth);
-    // },
-    // nextMonthDays(){
-    //   return getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth);
-    // }
+
   },
   created() {
     let arr = getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth)
@@ -47,9 +42,6 @@ export default {
   },
   methods: {
     ...mapMutations(['updateDays']),
-    // goLastYear(){
-    //   this.year--;
-    // },
     goLastMonth(){
       this.month--;
       if(this.month === 0){
@@ -66,14 +58,10 @@ export default {
       }
       this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
     },
-    // goNextYear(){
-    //   this.year++;
-    // }
   },
   watch:{
     'month':{ // 监听当前月份，获得：上一月、下一月、上一月所在年份，下一月所在年份
       handler:function(newVal, oldVal){
-        console.log(newVal, oldVal);
         if (newVal === 1) {
           this.lastMonth = 12;
           this.nextMonth = 2;
