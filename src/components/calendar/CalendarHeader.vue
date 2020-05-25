@@ -2,13 +2,13 @@
   <div class="calendar-header">
     <div class="title">
       <div class="last">
-        <!-- <span class="switch-year" @click="goLastYear">&#60;</span> -->
+        <span class="switch-year" @click="goLastYear">&#60;</span>
         <span class="switch-month" @click="goLastMonth">&#60;&#60;</span>
       </div>
       <div class="now">{{year}} 年 {{month}} 月</div>
       <div class="next">
         <span class="switch-month" @click="goNextMonth">&#62;&#62;</span>
-        <!-- <span class="switch-year" @click="goNextYear">&#62;</span> -->
+        <span class="switch-year" @click="goNextYear">&#62;</span>
       </div>
     </div>
     <div class="week">
@@ -58,6 +58,14 @@ export default {
       }
       this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
     },
+    goLastYear(){
+      this.year--;
+      this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
+    },
+    goNextYear(){
+      this.year++;
+      this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
+    }
   },
   watch:{
     'month':{ // 监听当前月份，获得：上一月、下一月、上一月所在年份，下一月所在年份
