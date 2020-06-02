@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">日历</router-link> |
-      <router-link to="/time">时钟</router-link>
+      <router-link to="/clock">时钟</router-link>
     </div>
     <router-view/>
   </div>
