@@ -20,8 +20,8 @@ export default {
     getTime(){
       setInterval(()=>{
         this.hours = new Date().getHours();
-        this.minutes = new Date().getMinutes();
-        this.seconds = new Date().getSeconds();
+        this.minutes = new Date().getMinutes() < 10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+        this.seconds = new Date().getSeconds() < 10 ? '0'+new Date().getSeconds() : new Date().getSeconds();;
       }, 1000)
     }
   }
