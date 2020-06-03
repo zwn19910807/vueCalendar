@@ -99,7 +99,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
       .now{
         font-size: 18px;
         color: #42b983;

@@ -9,11 +9,6 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Calendar',
     component: Calendar
-  },
-  {
-    path: '/clock',
-    name: 'Clock',
-    component: () => import(/* webpackChunkName: "time" */ '../views/Clock.vue')
   }
 ]
 

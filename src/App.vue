@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">日历</router-link> |
-      <router-link to="/clock">时钟</router-link>
+      <router-link to="/">日历 & 时钟</router-link>
     </div>
     <router-view/>
   </div>
@@ -14,6 +13,9 @@ body{
   height: 100vh;
 }
 #app {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
   height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +25,8 @@ body{
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
+  font-size: 30px;
 
   a {
     font-weight: bold;
