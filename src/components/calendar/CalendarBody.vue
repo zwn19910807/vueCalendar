@@ -1,7 +1,10 @@
 <template>
+<div style="position:relative;">
   <div class="calendar-body" @click.stop="changeDate($event)" @blur="handleBlur">
     <span ref="item" v-for="(v,i) in days" :key="i" class="days" :class="v.day === '今天'? 'cur' : ''" :style="{color:v.color}">{{v.day}}</span>
   </div>
+  <div class="btn-switch" @click="switchPanel">{{flag?'折叠':'展开'}}</div>
+</div>
 </template>
 
 <script>
@@ -10,7 +13,7 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-
+      flag: true
     }
   },
   computed: {
@@ -28,6 +31,10 @@ export default {
     },
     handleBlur(){
       console.log(123);
+    },
+    switchPanel(){
+      this.flag = !this.flag;
+      console.log('展开折叠');
     }
   },
 }
@@ -37,6 +44,7 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    background-color: #eee;
     .days{
       display: inline-block;
       width: calc( 100% / 7 );
@@ -53,5 +61,17 @@ export default {
         border-radius: 50%;
       }
     }
+  }
+  .btn-switch{
+    background-color: #eee;
+    width: 40px;
+    height: 35px;
+    border-radius: 0 0 50% 50%;
+    position: absolute;
+    bottom: -34px;
+    right: 0;
+    line-height: 36px;
+    font-size: 14px;
+    color: #aaa;
   }
 </style>

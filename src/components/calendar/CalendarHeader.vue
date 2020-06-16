@@ -98,24 +98,24 @@ export default {
     .title{
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       margin-bottom: 30px;
       .now{
-        font-size: 18px;
+        font-size: 20px;
         color: #42b983;
       }
       .last,.next {
         width: 90px;
         text-align: center;
+        cursor: pointer;
         span{
           display: inline-block;
           width: 30px;
           &.switch-year{
-            color: skyblue;
+            color: brown;
           }
           &.switch-month{
-            color: skyblue;
-            cursor: pointer;
+            color: brown;
           }
         }
       }
@@ -125,9 +125,10 @@ export default {
       height: 30px;
       line-height: 30px;
       display: flex;
+      background-color: #ddd;
       span{
         flex: 1;
-        color: #888;
+        color: #555;
         border: 1px solid #ccc;
       }
     }

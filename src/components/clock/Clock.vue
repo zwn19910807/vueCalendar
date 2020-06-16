@@ -29,8 +29,7 @@ export default {
 </script>
 <style lang="less">
   .clock {
-    font-size: 50px;
-    font-family: fantasy;
-    margin: 30px 0;
+    font-size: 36px;
+    margin: 20px 0;
   }
 </style>
