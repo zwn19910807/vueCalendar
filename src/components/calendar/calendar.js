@@ -79,11 +79,37 @@ const getMonthDays = (year, month, date, lastMonthYear, lastMonth, nextMonthYear
   return curDays;
 }
 
+// 获取日历“展开/折叠”后的日期
+const getToggleDates = (year, month, date, lastMonthYear, lastMonth, nextMonthYear, nextMonth) => {
+  let newArray = [];
+  let curDays = getMonthDays(year, month, date, lastMonthYear, lastMonth, nextMonthYear, nextMonth);
+  // 如果当年当月，展示当天所在行
+  if (year === new Date().getFullYear() && month === new Date() + 1) {
+    if (index <= 6) {
+      newArray = curDays.slice(0, 7);
+    } else if (index <= 13) {
+      newArray = curDays.slice(7, 14);
+    } else if (index <= 20) {
+      newArray = curDays.slice(14, 21);
+    } else if (index <= 27) {
+      newArray = curDays.slice(21, 28);
+    } else if (index <= 34) {
+      newArray = curDays.slice(28, 35);
+    } else {
+      newArray = curDays.slice(35);
+    }
+  } else {  // 不是当月，随便展示一行吧
+    newArray = curDays.slice(14, 21);
+  }
+  return newArray;
+}
+
 module.exports = {
   year,
   month,
   date,
   getDaysByMonth,
   getWeekday,
-  getMonthDays
+  getMonthDays,
+  getToggleDates
 }

@@ -8,11 +8,18 @@
 </template>
 
 <script>
-import { getDaysByMonth } from './calendar.js';
-import { mapState } from 'vuex';
+import { year, month, date, getMonthDays, getToggleDates } from './calendar.js';
+import { mapState, mapMutations } from 'vuex';
 export default {
   data() {
     return {
+      year: year,
+      month: month,
+      date: date,
+      lastMonth: this.month--,
+      nextMonth: this.month++,
+      lastMonthYear: this.year--,
+      nextMonthYear: this.year++,
       flag: true
     }
   },
@@ -25,6 +32,7 @@ export default {
     })
   },
   methods: {
+    ...mapMutations(['updateDays']),
     changeDate(event){
       Array.from(event.target.parentNode.childNodes).forEach(v=> v.classList.remove('select'));
       event.target.classList.add('select')
@@ -34,7 +42,9 @@ export default {
     },
     switchPanel(){
       this.flag = !this.flag;
-      console.log('展开折叠');
+      this.flag
+      ? this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth))
+      : this.updateDays(getToggleDates(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
     }
   },
 }
