@@ -41,30 +41,52 @@ export default {
     this.updateDays(arr);
   },
   methods: {
-    ...mapMutations(['updateDays']),
+    ...mapMutations([
+      'updateDays',
+      'updateYear',
+      'updateMonth',
+      'updateDate',
+      'updateLastMonth',
+      'updateNextMonth',
+      'updateLastMonthYear',
+      'updateNextMonthYear',
+      'updateFlag'
+    ]),
     goLastMonth(){
       this.month--;
+      this.updateMonth(this.month);
       if(this.month === 0){
         this.month = 12;
         this.year--;
+        this.updateMonth(this.month);
+        this.updateYear(this.year);
       }
       this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
+      this.updateFlag(true);
     },
     goNextMonth(){
       this.month++;
+      this.updateMonth(this.month);
       if(this.month === 13){
         this.month = 1;
         this.year++;
+        this.updateMonth(this.month);
+        this.updateYear(this.year);
       }
       this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
+      this.updateFlag(true);
     },
     goLastYear(){
       this.year--;
+      this.updateYear(this.year);
       this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
+      this.updateFlag(true);
     },
     goNextYear(){
       this.year++;
+      this.updateYear(this.year);
       this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
+      this.updateFlag(true);
     }
   },
   watch:{
@@ -86,6 +108,13 @@ export default {
           this.lastMonthYear = this.year;
           this.nextMonthYear = this.year;
         }
+        this.updateDate(this.date);
+        this.updateYear(this.year);
+        this.updateMonth(this.month);
+        this.updateLastMonth(this.lastMonth);
+        this.updateNextMonth(this.nextMonth);
+        this.updateLastMonthYear(this.lastMonthYear);
+        this.updateNextMonthYear(this.nextMonthYear);
       },
       deep: true,
       immediate: true

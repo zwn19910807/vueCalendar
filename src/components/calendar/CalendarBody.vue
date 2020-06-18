@@ -8,23 +8,26 @@
 </template>
 
 <script>
-import { year, month, date, getMonthDays, getToggleDates } from './calendar.js';
+import { getMonthDays, getToggleDates } from './calendar.js';
 import { mapState, mapMutations } from 'vuex';
 export default {
   data() {
     return {
-      year: year,
-      month: month,
-      date: date,
-      lastMonth: this.month--,
-      nextMonth: this.month++,
-      lastMonthYear: this.year--,
-      nextMonthYear: this.year++,
-      flag: true
+      
     }
   },
   computed: {
-    ...mapState(['days'])
+    ...mapState([
+      'days',
+      'year',
+      'month',
+      'date',
+      'lastMonth',
+      'nextMonth',
+      'lastMonthYear',
+      'nextMonthYear',
+      'flag'
+    ]),
   },
   created() {
     document.addEventListener('click', ()=>{
@@ -32,7 +35,7 @@ export default {
     })
   },
   methods: {
-    ...mapMutations(['updateDays']),
+    ...mapMutations(['updateDays', 'updateFlag']),
     changeDate(event){
       Array.from(event.target.parentNode.childNodes).forEach(v=> v.classList.remove('select'));
       event.target.classList.add('select')
@@ -41,7 +44,7 @@ export default {
       console.log(123);
     },
     switchPanel(){
-      this.flag = !this.flag;
+      this.updateFlag(!this.flag);
       this.flag
       ? this.updateDays(getMonthDays(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth))
       : this.updateDays(getToggleDates(this.year, this.month, this.date, this.lastMonthYear, this.lastMonth, this.nextMonthYear, this.nextMonth));
